@@ -19,7 +19,8 @@ uint32_t hwrand(void)
 /* Fill a variable size buffer with data from the Hardware RNG */
 void hwrand_fill(uint8_t *buf, size_t len)
 {
-    for(size_t i = 0; i < len; i+=4) {
+	size_t i= 0;
+    for(i = 0; i < len; i+=4) {
         uint32_t random = WDEV.HWRNG;
         /* using memcpy here in case 'buf' is unaligned */
         memcpy(buf + i, &random, (i+4 <= len) ? 4 : (len % 4));
